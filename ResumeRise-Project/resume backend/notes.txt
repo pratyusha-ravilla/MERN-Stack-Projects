@@ -1,0 +1,34 @@
+ResumeRise application:
+
+>setting the Resume data
+
+npm init
+
+npm install express
+
+npm i -D nodemon
+
+
+start: npm run dev to start the server
+
+to handler async error we need to install express async handler
+
+npm i express-async-handler
+
+instead of try-catch blocks we can use asyncHandler to control or catch the errors the errors data
+
+Connecting to mongodb
+
+npm i mongoose 
+
+//setting the user data(register, login, current)
+
+>for password security and change the raw password to hash password and save it to database we need to install bcrypt
+
+-- npm i bcrypt
+
+
+//to get the secure access token for that we need to install json web topken
+
+-- npm i jsonwebtoken
+
