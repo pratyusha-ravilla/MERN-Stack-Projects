@@ -1,0 +1,213 @@
+/*  express basic example  */
+
+const express = require('express')
+const app = express();
+
+app.get('/', function(req,res){
+  res.send("Hello world!")
+})
+app.get('/align', function(req,res)
+{
+  const id= req.query.id;
+
+  res.send("welcome back align " + id)
+})
+
+app.get('/align/:id', function(req,res){
+  const id= req.params.id;
+  if (id==20) {
+    res.send('hello navin');
+    
+  } else if(id==21) {
+    res.send("hello pavan");
+    
+  }
+  else if(id==22) {
+    res.send("hello kiran");
+    
+  }else if(id==23) {
+    res.send("Hello kall");
+    
+  }else{
+    res.send('hello everyone');
+  }
+})
+
+app.listen(9000, function(req,res){
+  console.log("Server running on port 9000 !")
+})
+
+
+
+
+
+/* student data */ server.js
+
+const express = require('express');
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost/studentsDB'
+
+
+const app = express();
+
+mongoose.connect(url 
+  // {useNewUrlParser:true}
+  )
+
+const con = mongoose.connection;
+
+con.on('open', () => {
+  console.log('mongodb connected to the server..');
+})
+
+app.use(express.json())
+
+//router creation
+const studentRouter = require('./routes/students')
+
+//middleware
+app.use('/students', studentRouter)
+
+app.listen(9000, () => {
+  console.log(`server is running on post 9000`)
+})
+
+
+
+
+/*  student management */
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+const PORT = process.env.PORT || 9000;
+
+app.use(bodyParser.json());
+app.use(cors());
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/studentmanagement', 
+{ useNewUrlParser: true, useUnifiedTopology: true }
+);
+
+// Define a simple student schema
+const studentSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  grade: String,
+});
+
+const Student = mongoose.model('Student', studentSchema);
+
+// Define routes
+app.post('/api/students', async (req, res) => {
+  try {
+    const newStudent = new Student(req.body);
+    await newStudent.save();
+    res.json(newStudent);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/students', async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.json(students);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+//another example
+// //server.js file
+
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+
+// const app = express();
+// const PORT = process.env.PORT || 9000;
+
+// app.use(bodyParser.json());
+// app.use(cors());
+
+// // Connect to MongoDB
+// mongoose.connect('mongodb://localhost/studentmanagement', 
+// { useNewUrlParser: true, useUnifiedTopology: true }
+// );
+
+// // Define a simple student schema
+// const studentSchema = new mongoose.Schema({
+//   name: String,
+//   email:String,
+//   phone:Number,
+//   age: Number,
+//   grade: String,
+// });
+
+// const Student = mongoose.model('Student', studentSchema);
+
+// // Define routes
+// app.post('/api/students', async (req, res) => {
+//   try {
+//     const newStudent = new Student(req.body);
+//     await newStudent.save();
+//     res.json(newStudent);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+// app.get('/api/students', async (req, res) => {
+//   try {
+//     const students = await Student.find();
+//     res.json(students);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+
+/ts server.js
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const url = 'mongodb://localhost/studentsDB'
+
+
+// const app = express();
+
+// mongoose.connect(url 
+//   // {useNewUrlParser:true}
+//   )
+
+// const con = mongoose.connection;
+
+// con.on('open', () => {
+//   console.log('mongodb connected to the server..');
+// })
+
+// app.use(express.json())
+
+// //router creation
+// const studentRouter = require('./routes/students')
+
+// //middleware
+// app.use('/students', studentRouter)
+
+// app.listen(9000, () => {
+//   console.log(`server is running on post 9000`)
+// })

@@ -13,7 +13,11 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/students', studentRoutes);
 
-mongoose.connect('mongodb://localhost:27017/studentdb', { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect('mongodb://localhost:27017/studentdb',
+// //  { useNewUrlParser: true, useUnifiedTopology: true }
+//  )
+
+mongoose.connect('mongodb://backend-mern:xTW9zYL7U8dEinnslowGDUwRDh8C0r7RGrxZx4s9JcB2f2sfKZhyvpG2PVXykWbd2yzo93pxCJjXACDbsCvI4Q==@backend-mern.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@backend-mern@', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => {

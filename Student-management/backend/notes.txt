@@ -1,0 +1,24 @@
+student data
+
+web server
+
+REST API -> Get,Post,Patch, delete, update 
+
+express
+
+mongodb
+
+GET : http://localhost:9000/students
+
+GET : http://localhost:9000/students/<id>
+
+POST : http://localhost:9000/students
+
+PATCH : http://localhost:9000/students/<id>
+
+
+
+student schema:
+name:
+email:
+mobile num:

@@ -1,0 +1,119 @@
+studentList.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './StudentList.css'; // Import the CSS file
+
+const StudentList = () => {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    // Fetch the list of students from the backend
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get('http://localhost:9000/api/students');
+        setStudents(response.data);
+      } catch (error) {
+        console.error('Error fetching students:', error);
+      }
+    };
+
+    fetchStudents();
+  }, []);
+
+  const handleCreateStudent = () => {
+    // Implement logic to navigate to the create student page or modal
+    console.log('Navigate to create student page');
+  };
+
+  const handleUpdateStudent = (studentId) => {
+    // Implement logic to navigate to the update student page or modal
+    console.log(`Navigate to update student page for student ID: ${studentId}`);
+  };
+
+  const handleDeleteStudent = (studentId) => {
+    // Implement logic to delete the student with the given ID
+    console.log(`Delete student with ID: ${studentId}`);
+  };
+
+  return (
+    <div className="student-list-container">
+      <h2>Student List</h2>
+      <button className="action-button" onClick={handleCreateStudent}>
+        Create Student
+      </button>
+      <ul className="student-list">
+        {students.map((student) => (
+          <li key={student._id} className="student-item">
+            <span className="student-info">
+              {student.name} - {student.age} years old
+            </span>
+            <button className="action-button" onClick={() => handleUpdateStudent(student._id)}>
+              Update
+            </button>
+            <button className="action-button" onClick={() => handleDeleteStudent(student._id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default StudentList;
+
+
+/* studentForm */
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import './StudentForm.css'
+
+// const StudentForm = () => {
+//   const [student, setStudent] = useState({
+//     name: '',
+//     email:'',
+//     phone:'',
+//     age: 0,
+//     grade: '',
+//   });
+
+//   const handleChange = (e) => {
+//     setStudent({ ...student, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+      
+//       const response = await axios.post('http://localhost:9000/api/students', student);
+//       console.log('Student added:', response.data);
+//     } catch (error) {
+//       console.error('Error adding student:', error);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <label>Name:</label>
+//       <input type="text" name="name" value={student.name} onChange={handleChange} />
+
+//       <label>Email:</label>
+//       <input type="email" name="email" value={student.email} onChange={handleChange} />
+
+//       <label>Phone:</label>
+//       <input type="phone" name="phone" value={student.phone} onChange={handleChange} />
+
+//       <label>Age:</label>
+//       <input type="number" name="age" value={student.age} onChange={handleChange} />
+
+//       <label>Grade:</label>
+//       <input type="text" name="grade" value={student.grade} onChange={handleChange} />
+
+//       <button type="submit">Add Student</button>
+//     </form>
+
+//   );
+// };
+
+// export default StudentForm;
