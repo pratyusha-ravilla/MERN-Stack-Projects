@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './StudentForm.css';
+let url = 'https://mern-fs-2.azurewebsites.net/api/students'
+// http://localhost:9000/api/students
+
 
 const StudentForm = () => {
   const [students, setStudents] = useState([]);
@@ -18,7 +21,10 @@ const StudentForm = () => {
 
   const handleAddStudent = async () => {
     try {
-      const response = await axios.post('http://localhost:9000/api/students', student);
+      const response = await axios.post(
+        `${url}`
+        //http://localhost:9000/api/students
+        , student);
       console.log('Student added:', response.data);
       // Refresh the list of students after adding a new one
       fetchStudents();
@@ -37,7 +43,8 @@ const StudentForm = () => {
 
   const handleDeleteStudent = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:9000/api/students/${id}`);
+      const response = await axios.delete(
+        `${url}/${id}`);
       console.log('Student deleted:', response.data);
       // Refresh the list of students after deleting one
       fetchStudents();
@@ -48,7 +55,8 @@ const StudentForm = () => {
 
   const handleUpdateStudent = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:9000/api/students/${id}`, student);
+      const response = await axios.put(
+    `${url}/${id}`, student);
       console.log('Student updated:', response.data);
       // Refresh the list of students after updating one
       fetchStudents();
@@ -78,7 +86,10 @@ const StudentForm = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/api/students');
+      const response = await axios.get(
+        // 'http://localhost:9000/api/students'
+        `${url}`
+        );
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);

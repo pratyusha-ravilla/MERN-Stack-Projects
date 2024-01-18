@@ -19,7 +19,9 @@ const StudentForm = () => {
 
   const handleAddStudent = async () => {
     try {
-      const response = await axios.post('http://localhost:9000/api/students', student);
+      const response = await axios.post(
+        'http://localhost:9000/api/students'
+        , student);
       console.log('Student added:', response.data);
       // Refresh the list of students after adding a new one
       fetchStudents();
