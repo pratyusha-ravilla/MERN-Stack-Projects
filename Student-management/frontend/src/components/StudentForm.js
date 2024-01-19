@@ -25,7 +25,9 @@ const StudentForm = () => {
         `${url}`
         //http://localhost:9000/api/students
         , student);
+        
       console.log('Student added:', response.data);
+      alert('student added successfully')
       // Refresh the list of students after adding a new one
       fetchStudents();
       // Clear the form fields after adding a new student
@@ -46,6 +48,7 @@ const StudentForm = () => {
       const response = await axios.delete(
         `${url}/${id}`);
       console.log('Student deleted:', response.data);
+      alert('student deleted successfully')
       // Refresh the list of students after deleting one
       fetchStudents();
     } catch (error) {
@@ -56,10 +59,13 @@ const StudentForm = () => {
   const handleUpdateStudent = async (id) => {
     try {
       const response = await axios.put(
-    `${url}/${id}`, student);
+    `${url}/${id}`,student);
+
       console.log('Student updated:', response.data);
+    
       // Refresh the list of students after updating one
       fetchStudents();
+      
       // Clear the form fields after updating a student
       // setStudent({
       //   name: '',
@@ -71,6 +77,7 @@ const StudentForm = () => {
     } catch (error) {
       console.error('Error updating student:', error);
     }
+    
   };
 
   const handleSelectStudent = (selectedStudent) => {
