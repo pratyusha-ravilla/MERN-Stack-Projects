@@ -20,7 +20,7 @@ const bookSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+//book schema
 export const Book = mongoose.model('cat',bookSchema);
 
 
